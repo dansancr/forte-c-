@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace Forte
 {
@@ -28,5 +29,22 @@ namespace Forte
 
         public string objJson { get; set; }
 
+    }
+
+    public class ForteResourceClass : ForteEnvironmentDetails
+    {
+        [JsonProperty("response")]
+        public ForteResponse response
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("links")]
+        public ForteLinks links
+        {
+            get;
+            set;
+        }
     }
 }

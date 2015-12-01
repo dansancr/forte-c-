@@ -3,27 +3,70 @@
 namespace Forte
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class FortePaymethod : ForteEnvironmentDetails
+    public class FortePaymethod : ForteResourceClass
     {
-        [JsonProperty("paymethod_token")]
-        public string paymethod_token { get; set; }
+        [JsonProperty("account_id")]
+        public string account_id
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("location_id")]
+        public string location_id
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("customer_token")]
-        public string customer_token { get; set; }
+        public string customer_token
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("paymethod_token")]
+        public string paymethod_token
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("label")]
-        public string label { get; set; }
-        [JsonProperty("notes")]
-        public string notes { get; set; }
-        [JsonProperty("echeck")]
-        public Echeck forteEcheck { get; set; }
+        public string label
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("card")]
-        public Card forteCard { get; set; }
-        [JsonProperty("links")]
-        public Links links { get; set; }
+        public ForteCard card
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("echeck")]
+        public ForteEcheck echeck
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("notes")]
+        public string notes
+        {
+            get;
+            set;
+        }
 
         public FortePaymethod()
         {
-            forteEcheck = new Echeck();
-            forteCard = new Card();
+            echeck = new ForteEcheck();
+            card = new ForteCard();
+            links = new ForteLinks();
+            response = new ForteResponse();
         }
     }
 }

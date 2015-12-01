@@ -45,18 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ForteLineItems.cs" />
     <Compile Include="Entities\FortePhysicalAddress.cs" />
     <Compile Include="Entities\ForteAddress.cs" />
     <Compile Include="Entities\ForteListResult.cs" />
+    <Compile Include="Entities\ForteResponse.cs" />
     <Compile Include="Entities\ForteScheduleItem.cs" />
     <Compile Include="Entities\ForteSchedule.cs" />
+    <Compile Include="Entities\ForteSummary.cs" />
     <Compile Include="Entities\ForteTransaction.cs" />
     <Compile Include="Entities\ForteCard.cs" />
     <Compile Include="Entities\ForteCustomer.cs" />
     <Compile Include="Entities\ForteEcheck.cs" />
     <Compile Include="Entities\ForteError.cs" />
     <Compile Include="Entities\FortePaymethod.cs" />
-    <Compile Include="Entities\Links.cs" />
+    <Compile Include="Entities\ForteLinks.cs" />
+    <Compile Include="Entities\ForteXData.cs" />
     <Compile Include="Infrastructure\ForteEnvironment.cs" />
     <Compile Include="Infrastructure\GetServerDetails.cs" />
     <Compile Include="Infrastructure\Mapper.cs" />

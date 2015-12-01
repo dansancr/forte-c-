@@ -4,147 +4,154 @@ using System;
 namespace Forte
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class ForteSchedule : ForteEnvironmentDetails
+    public class ForteSchedule : ForteResourceClass
     {
-        [JsonProperty("schedule_id")]
-        public string ScheduleID
-        {
-            get;
-            set;
-        }
-
         [JsonProperty("account_id")]
-        public string AccountID
+        public string account_id
         {
             get;
             set;
         }
 
         [JsonProperty("location_id")]
-        public string LocationID
+        public string location_id
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("schedule_id")]
+        public string schedule_id
         {
             get;
             set;
         }
 
         [JsonProperty("customer_token")]
-        public string CustomerToken
+        public string customer_token
         {
             get;
             set;
         }
 
         [JsonProperty("paymethod_token")]
-        public string PaymethodToken
+        public string paymethod_token
         {
             get;
             set;
         }
 
         [JsonProperty("action")]
-        public string Action
+        public string action
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_quantity")]
-        public Nullable<int> Quantity
+        public string schedule_quantity
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_frequency")]
-        public string Frequency
+        public string schedule_frequency
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_amount")]
-        public Nullable<double> Amount
-        {
-            get;
-            set;
-        }
-
-        [JsonProperty("schedule_created_date")]
-        public DateTime? CreatedDate
+        public string schedule_amount
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_start_date")]
-        public DateTime? StartDate
+        public string schedule_start_date
         {
             get;
             set;
         }
 
-        [JsonProperty("schedule_status")]
-        public string Status
-        {
-            get;
-            set;
-        }
-
-        [JsonProperty("schedule_source")]
-        public string Source
+        [JsonProperty("schedule_created_date")]
+        public string schedule_created_date
         {
             get;
             set;
         }
 
         [JsonProperty("customer_acct_code")]
-        public string CustomerAcctCode
+        public string customer_acct_code
         {
             get;
             set;
         }
 
         [JsonProperty("sec_code")]
-        public string SecCode
+        public string sec_code
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("schedule_status")]
+        public string schedule_status
         {
             get;
             set;
         }
 
         [JsonProperty("item_description")]
-        public string ItemDescription
+        public string item_description
         {
             get;
             set;
         }
 
         [JsonProperty("reference_id")]
-        public string ReferenceId
+        public string reference_id
         {
             get;
             set;
         }
 
         [JsonProperty("order_number")]
-        public string OrderNumber
+        public string order_number
         {
             get;
             set;
         }
 
         [JsonProperty("customer_id")]
-        public string CustomerId
+        public string customer_id
         {
             get;
             set;
         }
 
-        public Links links { get; set; }
+        [JsonProperty("summary")]
+        public ForteSummary summary
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("xdata")]
+        public ForteXData xdata
+        {
+            get;
+            set;
+        }
 
         public ForteSchedule()
         {
-            links = new Links();
+            summary = new ForteSummary();
+            xdata = new ForteXData();
+            links = new ForteLinks();
+            response = new ForteResponse();
         }
-
     }
 }

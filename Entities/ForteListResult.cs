@@ -10,17 +10,37 @@ namespace Forte
     public class ForteListResult<T> where T : class, new()
     {
         [JsonProperty("number_results")]
-        public string number_results { get; set; }
+        public string number_results
+        {
+            get;
+            set;
+        }
 
         [JsonProperty("results")]
-        public IEnumerable<T> results { get; set; }
+        public IEnumerable<T> results
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("response")]
+        public ForteResponse response
+        {
+            get;
+            set;
+        }
 
         [JsonProperty("links")]
-        public Links links { get; set; }
+        public ForteLinks links
+        {
+            get;
+            set;
+        }
 
         public ForteListResult()
         {
-            links = new Links();
+            response = new ForteResponse();
+            links = new ForteLinks();
         }
     }
 }

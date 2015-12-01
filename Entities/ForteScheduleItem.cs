@@ -4,98 +4,96 @@ using System;
 namespace Forte
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class ForteScheduleItem : ForteEnvironmentDetails
+    public class ForteScheduleItem : ForteResourceClass
     {
-        [JsonProperty("schedule_item_id")]
-        public string ScheduleItemID
-        {
-            get;
-            set;
-        }
-
         [JsonProperty("account_id")]
-        public string AccountID
+        public string account_id
         {
             get;
             set;
         }
 
         [JsonProperty("location_id")]
-        public string LocationID
+        public string location_id
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("schedule_item_id")]
+        public string schedule_item_id
         {
             get;
             set;
         }
 
         [JsonProperty("customer_token")]
-        public string CustomerToken
+        public string customer_token
         {
             get;
             set;
         }
 
         [JsonProperty("paymethod_token")]
-        public string PaymethodToken
+        public string paymethod_token
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_id")]
-        public string ScheduleID
+        public string schedule_id
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_item_amount")]
-        public Nullable<double> Amount
+        public string schedule_item_amount
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_item_status")]
-        public string Status
+        public string schedule_item_status
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_item_date")]
-        public DateTime? ScheduleDate
+        public string schedule_item_date
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_item_processed_date")]
-        public DateTime? ProcessedDate
+        public string schedule_item_processed_date
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_item_created_date")]
-        public DateTime? CreatedDate
+        public string schedule_item_created_date
         {
             get;
             set;
         }
 
         [JsonProperty("schedule_item_description")]
-        public string ItemDescription
+        public string schedule_item_description
         {
             get;
             set;
         }
 
-        public Links links { get; set; }
-
         public ForteScheduleItem()
         {
-            links = new Links();
+            links = new ForteLinks();
+            response = new ForteResponse();
         }
-
     }
 }
