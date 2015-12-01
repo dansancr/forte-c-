@@ -168,6 +168,8 @@ namespace Forte
 
         public ForteTransaction()
         {
+            line_items = new ForteLineItems();
+            xdata = new ForteXData();
             links = new ForteLinks();
             response = new ForteResponse();
         }
