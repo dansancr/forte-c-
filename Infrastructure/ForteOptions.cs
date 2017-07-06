@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Forte
+namespace ForteSdk
 {
     public class ForteOptions
     {
-        [JsonProperty("Account_Id")]
-        public string Account_Id { get; set; }
+        [JsonProperty("Organization_Id")]
+        public string Organization_Id { get; set; }
 
         [JsonProperty("Location_Id")]
         public string Location_Id { get; set; }
@@ -43,7 +43,7 @@ namespace Forte
 
         public string Password { get; set; }
 
-        public string AuthAccountId { get; set; }
+        public string AuthOrganizationId { get; set; }
 
         public string Server { get; set; }
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace Forte
+namespace ForteSdk
 {
     public enum ForteEnvironment
     {
@@ -21,7 +21,7 @@ namespace Forte
         [Required]
         public string Server { get; set; }
         [Required]
-        public string AuthAccountid { get; set; }
+        public string AuthOrganizationId { get; set; }
         [Required]
         public string Username { get; set; }
         [Required]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Forte
+namespace ForteSdk
 {
     internal static class GetServerDetails
     {
@@ -16,15 +16,15 @@ namespace Forte
                 switch (createOptions.Environment.ToString().ToUpper())
                 {
                     case "LIVE":
-                        serverName = "https://api.forte.net/API/v2";
+                        serverName = "https://api.forte.net/API/v3";
                         break;
 
                     case "SANDBOX":
-                        serverName = "https://sandbox.forte.net/API/v2";
+                        serverName = "https://sandbox.forte.net/API/v3";
                         break;
 
                     default:
-                        serverName = "https://sandbox.forte.net/API/v2";
+                        serverName = "https://sandbox.forte.net/API/v3";
                         break;
                 }
             }
