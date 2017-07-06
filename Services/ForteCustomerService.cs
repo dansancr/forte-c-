@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Forte;
+using ForteSdk;
 using System.Resources;
 using Newtonsoft.Json;
 
-namespace Forte
+namespace ForteSdk
 {
     /// <summary>
     /// Provides operations for creating, finding, updating, and deleting Customers in the vault
@@ -16,7 +16,7 @@ namespace Forte
     {
         private string _strUser = "";
         private string _strPassword = "";
-        private string _strAuthAccountID = "";
+        private string _strAuthOrganizationID = "";
         private string _serverName = "";
         public string _url = "";
 
@@ -26,7 +26,7 @@ namespace Forte
             _serverName = GetServerDetails.Geturl(createOptions);
             _strUser = createOptions.UserId;
             _strPassword = createOptions.Password;
-            _strAuthAccountID = createOptions.AuthAccountId;
+            _strAuthOrganizationID = createOptions.AuthOrganizationId;
             var urlparam = ParameterBuilder.ApplyAllParameters(createOptions);
             _url = _serverName + urlparam;
         }
@@ -38,7 +38,7 @@ namespace Forte
                 HttpStatusCode = System.Net.HttpStatusCode.OK,
                 Source = "CreateCustomer"
             };
-            var response = Requestor.PostString(_url, customer, _strUser, _strPassword, _strAuthAccountID);
+            var response = Requestor.PostString(_url, customer, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {
@@ -71,7 +71,7 @@ namespace Forte
                 HttpStatusCode = System.Net.HttpStatusCode.OK,
                 Source = "GetCustomer"
             };
-            string strcustResult = Requestor.Get(_url, _strUser, _strPassword, _strAuthAccountID);
+            string strcustResult = Requestor.Get(_url, _strUser, _strPassword, _strAuthOrganizationID);
 
 
             if (!(strcustResult.IndexOf("#ERROR#") == -1))
@@ -107,7 +107,7 @@ namespace Forte
                 HttpStatusCode = System.Net.HttpStatusCode.OK,
                 Source = "UpdateCustomer"
             };
-            var response = Requestor.PutString(_url, customer, _strUser, _strPassword, _strAuthAccountID);
+            var response = Requestor.PutString(_url, customer, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {
@@ -140,7 +140,7 @@ namespace Forte
                 HttpStatusCode = System.Net.HttpStatusCode.OK,
                 Source = "DeleteCustomer"
             };
-            var response = Requestor.Delete(_url, _strUser, _strPassword, _strAuthAccountID);
+            var response = Requestor.Delete(_url, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {
@@ -174,7 +174,7 @@ namespace Forte
                 Source = "ListCustomer"
             };
 
-            string response = Requestor.Get(_url, _strUser, _strPassword, _strAuthAccountID);
+            string response = Requestor.Get(_url, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {

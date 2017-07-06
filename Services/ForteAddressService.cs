@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Forte;
+using ForteSdk;
 using System.Resources;
 using Newtonsoft.Json;
 
-namespace Forte
+namespace ForteSdk
 {
     /// <summary>
     /// Provides operations for creating, finding, updating, and deleting Addresses in the vault, Customer_token is mandatory.
@@ -15,7 +15,7 @@ namespace Forte
     {
         private string _strUser = "";
         private string _strPassword = "";
-        private string _strAuthAccountID = "";
+        private string _strAuthOrganizationID = "";
         private string _serverName = "";
         public string _url = "";
 
@@ -25,7 +25,7 @@ namespace Forte
             _serverName = GetServerDetails.Geturl(createOptions);
             _strUser = createOptions.UserId;
             _strPassword = createOptions.Password;
-            _strAuthAccountID = createOptions.AuthAccountId;
+            _strAuthOrganizationID = createOptions.AuthOrganizationId;
             var urlparam = ParameterBuilder.ApplyAllParameters(createOptions);
             _url = _serverName + urlparam;
         }
@@ -38,7 +38,7 @@ namespace Forte
                 Source = "ListAddress"
             };
 
-            string response = Requestor.Get(_url, _strUser, _strPassword, _strAuthAccountID);
+            string response = Requestor.Get(_url, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {
@@ -73,7 +73,7 @@ namespace Forte
                 HttpStatusCode = System.Net.HttpStatusCode.OK,
                 Source = "CreateAddress"
             };
-            var response = Requestor.PostString(_url, forteAddressFull, _strUser, _strPassword, _strAuthAccountID);
+            var response = Requestor.PostString(_url, forteAddressFull, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {
@@ -110,7 +110,7 @@ namespace Forte
                 Source = "GetAddress"
             };
 
-            string strAddrResult = Requestor.Get(_url, _strUser, _strPassword, _strAuthAccountID);
+            string strAddrResult = Requestor.Get(_url, _strUser, _strPassword, _strAuthOrganizationID);
 
 
             if (!(strAddrResult.IndexOf("#ERROR#") == -1))
@@ -146,7 +146,7 @@ namespace Forte
                 HttpStatusCode = System.Net.HttpStatusCode.OK,
                 Source = "DeleteAddress"
             };
-            var response = Requestor.Delete(_url, _strUser, _strPassword, _strAuthAccountID);
+            var response = Requestor.Delete(_url, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {
@@ -181,7 +181,7 @@ namespace Forte
                 Source = "UpdateAddress"
             };
 
-            var response = Requestor.PutString(_url, forteAddr, _strUser, _strPassword, _strAuthAccountID);
+            var response = Requestor.PutString(_url, forteAddr, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {

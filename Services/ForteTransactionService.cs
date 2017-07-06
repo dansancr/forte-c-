@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Forte;
+using ForteSdk;
 using System.Resources;
 using Newtonsoft.Json;
 
 
-namespace Forte
+namespace ForteSdk
 {
     /// <summary>
     /// Provides operations for creating, finding, updating, and deleting Transactions in the vault
@@ -16,7 +16,7 @@ namespace Forte
     {
         private string _strUser = "";
         private string _strPassword = "";
-        private string _strAuthAccountID = "";
+        private string _strAuthOrganizationID = "";
         private string _serverName = "";
         public string _url = "";
 
@@ -26,7 +26,7 @@ namespace Forte
             _serverName = GetServerDetails.Geturl(createOptions);
             _strUser = createOptions.UserId;
             _strPassword = createOptions.Password;
-            _strAuthAccountID = createOptions.AuthAccountId;
+            _strAuthOrganizationID = createOptions.AuthOrganizationId;
             var urlparam = ParameterBuilder.ApplyAllParameters(createOptions);
             _url = _serverName + urlparam;
         }
@@ -39,7 +39,7 @@ namespace Forte
                 Source = "ListTransaction"
             };
 
-            string response = Requestor.Get(_url, _strUser, _strPassword, _strAuthAccountID);
+            string response = Requestor.Get(_url, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {
@@ -73,7 +73,7 @@ namespace Forte
                 HttpStatusCode = System.Net.HttpStatusCode.OK,
                 Source = "CreateTransaction"
             };
-            var response = Requestor.PostString(_url, trans, _strUser, _strPassword, _strAuthAccountID);
+            var response = Requestor.PostString(_url, trans, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {
@@ -107,7 +107,7 @@ namespace Forte
                 HttpStatusCode = System.Net.HttpStatusCode.OK,
                 Source = "GetTransaction"
             };
-            string strtranResult = Requestor.Get(_url, _strUser, _strPassword, _strAuthAccountID);
+            string strtranResult = Requestor.Get(_url, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(strtranResult.IndexOf("#ERROR#") == -1))
             {
@@ -142,7 +142,7 @@ namespace Forte
                 HttpStatusCode = System.Net.HttpStatusCode.OK,
                 Source = "DeleteTransaction"
             };
-            var response = Requestor.Delete(_url, _strUser, _strPassword, _strAuthAccountID);
+            var response = Requestor.Delete(_url, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {
@@ -175,7 +175,7 @@ namespace Forte
                 HttpStatusCode = System.Net.HttpStatusCode.OK,
                 Source = "UpdateTransaction"
             };
-            var response = Requestor.PutString(_url, forteTran, _strUser, _strPassword, _strAuthAccountID);
+            var response = Requestor.PutString(_url, forteTran, _strUser, _strPassword, _strAuthOrganizationID);
 
             if (!(response.IndexOf("#ERROR#") == -1))
             {
