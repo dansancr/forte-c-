@@ -61,12 +61,12 @@ namespace ForteSdk
             set;
         }
 
-        [JsonProperty("last_4_account_number")]
-        public string last_4_account_number
-        {
-            get;
-            set;
-        }
+        //[JsonProperty("last_4_account_number")]
+        //public string last_4_account_number
+        //{
+        //    get;
+        //    set;
+        //}
 
 
     }
