@@ -40,8 +40,8 @@ namespace ForteSdk
             set;
         }
 
-        [JsonProperty("check_number")]
-        public string check_number
+        [JsonProperty("item_description")]
+        public string item_description
         {
             get;
             set;
@@ -53,5 +53,21 @@ namespace ForteSdk
             get;
             set;
         }
+
+        [JsonProperty("one_time_token")]
+        public string one_time_token
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("last_4_account_number")]
+        public string last_4_account_number
+        {
+            get;
+            set;
+        }
+
+
     }
 }
