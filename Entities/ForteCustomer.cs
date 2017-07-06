@@ -104,6 +104,13 @@ namespace ForteSdk
             set;
         }
 
+        [JsonProperty("deleted_date")]
+        public string deleted_date
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("paymethod")]
         public FortePaymethod paymethod
         {
