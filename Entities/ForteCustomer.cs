@@ -83,6 +83,27 @@ namespace ForteSdk
             set;
         }
 
+        [JsonProperty("display_name")]
+        public string display_name
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("created_date")]
+        public string created_date
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("updated_date")]
+        public string updated_date
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("paymethod")]
         public FortePaymethod paymethod
         {
