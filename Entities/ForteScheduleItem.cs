@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Forte
+namespace ForteSdk
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class ForteScheduleItem : ForteResourceClass
     {
-        [JsonProperty("account_id")]
-        public string account_id
+        [JsonProperty("organization_id")]
+        public string organization_id
         {
             get;
             set;

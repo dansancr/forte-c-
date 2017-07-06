@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Forte
+namespace ForteSdk
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class ForteCard
