@@ -124,29 +124,57 @@ namespace ForteSdk
             set;
         }
 
+        [JsonProperty("subtotal_amount")]
+        public string subtotal_amount
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("recurring_indicator")]
+        public string recurring_indicator
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("customer_ip_address")]
+        public string customer_ip_address
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("status")]
+        public string status
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("billing_address")]
-        public string billing_address
+        public ForteAddress billing_address
         {
             get;
             set;
         }
 
         [JsonProperty("shipping_address")]
-        public string shipping_address
+        public ForteAddress shipping_address
         {
             get;
             set;
         }
 
         [JsonProperty("card")]
-        public string card
+        public ForteCard card
         {
             get;
             set;
         }
 
         [JsonProperty("echeck")]
-        public string echeck
+        public ForteEcheck echeck
         {
             get;
             set;
@@ -168,6 +196,10 @@ namespace ForteSdk
 
         public ForteTransaction()
         {
+            billing_address = new ForteAddress();
+            shipping_address = new ForteAddress();
+            card = new ForteCard();
+            echeck = new ForteEcheck();
             line_items = new ForteLineItems();
             xdata = new ForteXData();
             links = new ForteLinks();
