@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\ForteLineItems.cs" />
+    <Compile Include="Entities\ForteSearchCriteria.cs" />
+    <Compile Include="Entities\ForteResourceSpecific.cs" />
     <Compile Include="Entities\FortePhysicalAddress.cs" />
     <Compile Include="Entities\ForteAddress.cs" />
     <Compile Include="Entities\ForteListResult.cs" />

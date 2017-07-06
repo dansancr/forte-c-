@@ -16,6 +16,13 @@ namespace ForteSdk
             set;
         }
 
+        [JsonProperty("search_criteria")]
+        public ForteSearchCriteria search_criteria
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("results")]
         public IEnumerable<T> results
         {
@@ -39,6 +46,7 @@ namespace ForteSdk
 
         public ForteListResult()
         {
+            search_criteria = new ForteSearchCriteria();
             response = new ForteResponse();
             links = new ForteLinks();
         }
