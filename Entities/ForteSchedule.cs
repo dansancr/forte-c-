@@ -132,8 +132,8 @@ namespace ForteSdk
             set;
         }
 
-        [JsonProperty("summary")]
-        public ForteSummary summary
+        [JsonProperty("schedule_summary")]
+        public ForteSummary schedule_summary
         {
             get;
             set;
@@ -148,7 +148,7 @@ namespace ForteSdk
 
         public ForteSchedule()
         {
-            summary = new ForteSummary();
+            schedule_summary = new ForteSummary();
             xdata = new ForteXData();
             links = new ForteLinks();
             response = new ForteResponse();
