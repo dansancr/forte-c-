@@ -68,12 +68,12 @@ namespace ForteSdk
             set;
         }
 
-        [JsonProperty("fax")]
-        public string fax
-        {
-            get;
-            set;
-        }
+        //[JsonProperty("fax")]
+        //public string fax
+        //{
+        //    get;
+        //    set;
+        //}
 
         [JsonProperty("email")]
         public string email
