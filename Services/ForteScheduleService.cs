@@ -62,7 +62,7 @@ namespace ForteSdk
             }
         }
 
-        public object Create(ForteSchedule forteSchedule)
+        public string Create(ForteSchedule forteSchedule)
         {
             ForteException errCreate = new ForteException()
             {

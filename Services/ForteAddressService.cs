@@ -66,7 +66,7 @@ namespace ForteSdk
 
         }
 
-        public object Create(ForteAddress forteAddressFull)
+        public string Create(ForteAddress forteAddressFull)
         {
             ForteException errGetAddr = new ForteException()
             {
