@@ -63,6 +63,7 @@
     <Compile Include="Entities\FortePaymethod.cs" />
     <Compile Include="Entities\ForteLinks.cs" />
     <Compile Include="Entities\ForteXData.cs" />
+    <Compile Include="Infrastructure\RequestorResponse.cs" />
     <Compile Include="Infrastructure\ForteEnvironment.cs" />
     <Compile Include="Infrastructure\GetServerDetails.cs" />
     <Compile Include="Infrastructure\Mapper.cs" />
@@ -76,11 +77,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ForteOptions.cs" />
-    <Compile Include="Services\ForteScheduleService.cs" />
-    <Compile Include="Services\ForteScheduleItemService.cs" />
     <Compile Include="Services\ForteAddressService.cs" />
-    <Compile Include="Services\ForteCustomerService.cs" />
+    <Compile Include="Services\ForteCustomerService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Services\FortePaymethodService.cs" />
+    <Compile Include="Services\ForteScheduleItemService.cs" />
+    <Compile Include="Services\ForteScheduleService.cs" />
+    <Compile Include="Services\ForteService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Services\ForteTransactionService.cs" />
   </ItemGroup>
   <ItemGroup>

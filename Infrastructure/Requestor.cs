@@ -9,37 +9,30 @@ namespace ForteSdk
 {
     internal static class Requestor
     {
-        public static string PostString<T>(string url, T content, string username, string password, string authOrganizationId)
+        public static RequestorResponse PostString<T>(string url, T content, string username, string password, string authOrganizationId)
         {
             string jsonString = JsonConvert.SerializeObject(content);
-            var wr = GetResponse(url, "POST", jsonString, username, password, authOrganizationId);
-            return wr;
+            RequestorResponse requestorResponse = GetResponse(url, "POST", jsonString, username, password, authOrganizationId);
+            return requestorResponse;
         }
 
-        public static string Get(string URL, string username, string password, string authOrganizationId)
+        public static RequestorResponse Get(string URL, string username, string password, string authOrganizationId)
         {
-            string getResp = GetResponse(URL, "GET", "", username, password, authOrganizationId);
-            return getResp;
+            RequestorResponse requestorResponse = GetResponse(URL, "GET", "", username, password, authOrganizationId);
+            return requestorResponse;
         }
 
-        public static string PutString<T>(string url, T content, string username, string password, string authOrganizationId)
+        public static RequestorResponse PutString<T>(string url, T content, string username, string password, string authOrganizationId)
         {
             string jsonString = JsonConvert.SerializeObject(content);
-            var wr = GetResponse(url, "PUT", jsonString, username, password, authOrganizationId);
-            return wr;
+            RequestorResponse requestorResponse = GetResponse(url, "PUT", jsonString, username, password, authOrganizationId);
+            return requestorResponse;
         }
 
-        public static string Delete(string URL, string username, string password, string authOrganizationId)
+        public static RequestorResponse Delete(string URL, string username, string password, string authOrganizationId)
         {
-            string getResp = GetResponse(URL, "DELETE", "", username, password, authOrganizationId);
-            if (getResp != String.Empty && (getResp.IndexOf("#ERROR#") == -1))
-            {
-                return getResp;
-            }
-            else
-            {
-                return "#ERROR#";
-            }
+            RequestorResponse requestorResponse = GetResponse(URL, "DELETE", "", username, password, authOrganizationId);
+            return requestorResponse;
         }
 
         private static string ReadStream(Stream stream)
@@ -50,7 +43,7 @@ namespace ForteSdk
             }
         }
 
-        internal static string GetResponse(String URL, String method, string requestBody, string username, string password, string authOrganizationId)
+        internal static RequestorResponse GetResponse(String URL, String method, string requestBody, string username, string password, string authOrganizationId)
         {
             HttpResponseMessage response;
             using (var client = new HttpClient())
@@ -119,56 +112,44 @@ namespace ForteSdk
                 }
 
 
+                RequestorResponse requestorResponse = new RequestorResponse();
+                
                 if (response != null && response.IsSuccessStatusCode)
                 {
-                    var resultMessage = response.Content.ReadAsStringAsync().Result;
+                    requestorResponse.Content = response.Content.ReadAsStringAsync().Result;
+                    requestorResponse.StatusCode = response.StatusCode;
 
                     switch ((method).ToUpper())
                     {
                         case "POST":
-                            resultMessage = "HttpStatus Code: " + response.StatusCode
-                                 + "\r\n"
-                                 + "Record Successfully."
-                                 + "\r\n"
-                                 + "||"
-                                 + resultMessage;
+                            requestorResponse.Message = "Record Successfully.";
                             break;
 
                         case "PUT":
-                            resultMessage = "HttpStatus Code: " + response.StatusCode
-                              + "\r\n"
-                              + "Record Successfully Updated."
-                              + "\r\n"
-                              + "||"
-                              + resultMessage;
-
+                            requestorResponse.Message = "Record Successfully Updated.";
                             break;
 
                         case "DELETE":
-                            resultMessage = "HttpStatus Code: " + response.StatusCode
-                              + "\r\n"
-                              + "Record Successfully Deleted."
-                              + "\r\n"
-                              + "||"
-                              + resultMessage;
-
+                            requestorResponse.Message = "Record Successfully Deleted.";
                             break;
 
                         default:
                             break;
                     }
-                    return resultMessage;
+                    return requestorResponse;
                 }
                 else if (response != null && !(response.IsSuccessStatusCode))
                 {
-                    var resultMessage = "HttpStatus Code: " + response.StatusCode
-                                        + "||" + "#ERROR# "
-                                        + response.Content.ReadAsStringAsync().Result;
-                    return resultMessage;
+                    requestorResponse.Content = response.Content.ReadAsStringAsync().Result;
+                    requestorResponse.StatusCode = response.StatusCode;
+                    requestorResponse.Message = "#ERROR#";
+                    return requestorResponse;
                 }
                 else
                 {
-                    return "#ERROR# " + response.ToString();
+                    requestorResponse.Content = response.Content.ReadAsStringAsync().Result;
+                    requestorResponse.Message = "#ERROR#";
+                    return requestorResponse;
                 }
             }
 
