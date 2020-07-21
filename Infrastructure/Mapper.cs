@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace Forte
+namespace ForteSdk
 {
     public static class Mapper<T>
     {

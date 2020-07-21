@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Forte
+namespace ForteSdk
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class ForteCustomer : ForteResourceClass
     {
-        [JsonProperty("account_id")]
-        public string account_id
+        [JsonProperty("organization_id")]
+        public string organization_id
         {
             get;
             set;
@@ -82,6 +82,34 @@ namespace Forte
             get;
             set;
         }
+
+        [JsonProperty("display_name")]
+        public string display_name
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("created_date")]
+        public string created_date
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("updated_date")]
+        public string updated_date
+        {
+            get;
+            set;
+        }
+
+        //[JsonProperty("deleted_date")]
+        //public string deleted_date
+        //{
+        //    get;
+        //    set;
+        //}
 
         [JsonProperty("paymethod")]
         public FortePaymethod paymethod

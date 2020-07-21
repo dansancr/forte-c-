@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Forte
+namespace ForteSdk
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class ForteCard
@@ -74,5 +74,34 @@ namespace Forte
             get;
             set;
         }
+
+        [JsonProperty("suppress_account_updater")]
+        public string suppress_account_updater
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("au_code")]
+        public string au_code
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("au_updated_date")]
+        public string au_updated_date
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("au_description")]
+        public string au_description
+        {
+            get;
+            set;
+        }
+
     }
 }

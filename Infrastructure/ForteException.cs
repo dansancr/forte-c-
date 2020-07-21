@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace Forte
+namespace ForteSdk
 {
     [Serializable]
     public class ForteException : ApplicationException

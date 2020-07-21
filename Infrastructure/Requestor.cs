@@ -5,41 +5,34 @@ using System.Text;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace Forte
+namespace ForteSdk
 {
     internal static class Requestor
     {
-        public static string PostString<T>(string url, T content, string username, string password, string authAccountID)
+        public static RequestorResponse PostString<T>(string url, T content, string username, string password, string authOrganizationId)
         {
             string jsonString = JsonConvert.SerializeObject(content);
-            var wr = GetResponse(url, "POST", jsonString, username, password, authAccountID);
-            return wr;
+            RequestorResponse requestorResponse = GetResponse(url, "POST", jsonString, username, password, authOrganizationId);
+            return requestorResponse;
         }
 
-        public static string Get(string URL, string strUser, string strPasswd, string authAccountID)
+        public static RequestorResponse Get(string URL, string username, string password, string authOrganizationId)
         {
-            string getResp = GetResponse(URL, "GET", "", strUser, strPasswd, authAccountID);
-            return getResp;
+            RequestorResponse requestorResponse = GetResponse(URL, "GET", "", username, password, authOrganizationId);
+            return requestorResponse;
         }
 
-        public static string PutString<T>(string url, T content, string username, string password, string authAccountID)
+        public static RequestorResponse PutString<T>(string url, T content, string username, string password, string authOrganizationId)
         {
             string jsonString = JsonConvert.SerializeObject(content);
-            var wr = GetResponse(url, "PUT", jsonString, username, password, authAccountID);
-            return wr;
+            RequestorResponse requestorResponse = GetResponse(url, "PUT", jsonString, username, password, authOrganizationId);
+            return requestorResponse;
         }
 
-        public static string Delete(string URL, string strUser, string strPasswd, string authAccountID)
+        public static RequestorResponse Delete(string URL, string username, string password, string authOrganizationId)
         {
-            string getResp = GetResponse(URL, "DELETE", "", strUser, strPasswd, authAccountID);
-            if (getResp != String.Empty && (getResp.IndexOf("#ERROR#") == -1))
-            {
-                return getResp;
-            }
-            else
-            {
-                return "#ERROR#";
-            }
+            RequestorResponse requestorResponse = GetResponse(URL, "DELETE", "", username, password, authOrganizationId);
+            return requestorResponse;
         }
 
         private static string ReadStream(Stream stream)
@@ -50,14 +43,14 @@ namespace Forte
             }
         }
 
-        internal static string GetResponse(String URL, String method, string requestBody, string strUser, string strPasswd, string authAccountID)
+        internal static RequestorResponse GetResponse(String URL, String method, string requestBody, string username, string password, string authOrganizationId)
         {
             HttpResponseMessage response;
             using (var client = new HttpClient())
             {
-                string authheadertext = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(string.Format("{0}:{1}", strUser, strPasswd)));
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", authheadertext);
-                client.DefaultRequestHeaders.Add("X-Forte-Auth-Account-Id", authAccountID);
+                string authHeaderText = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(string.Format("{0}:{1}", username, password)));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", authHeaderText);
+                client.DefaultRequestHeaders.Add("x-forte-auth-organization-id", authOrganizationId);
 
                 StringContent content = new System.Net.Http.StringContent(requestBody, Encoding.UTF8, "application/json");
                 try
@@ -119,56 +112,44 @@ namespace Forte
                 }
 
 
+                RequestorResponse requestorResponse = new RequestorResponse();
+                
                 if (response != null && response.IsSuccessStatusCode)
                 {
-                    var resultMessage = response.Content.ReadAsStringAsync().Result;
+                    requestorResponse.Content = response.Content.ReadAsStringAsync().Result;
+                    requestorResponse.StatusCode = response.StatusCode;
 
                     switch ((method).ToUpper())
                     {
                         case "POST":
-                            resultMessage = "HttpStatus Code: " + response.StatusCode
-                                 + "\r\n"
-                                 + "Record Successfully."
-                                 + "\r\n"
-                                 + "||"
-                                 + resultMessage;
+                            requestorResponse.Message = "Record Successfully.";
                             break;
 
                         case "PUT":
-                            resultMessage = "HttpStatus Code: " + response.StatusCode
-                              + "\r\n"
-                              + "Record Successfully Updated."
-                              + "\r\n"
-                              + "||"
-                              + resultMessage;
-
+                            requestorResponse.Message = "Record Successfully Updated.";
                             break;
 
                         case "DELETE":
-                            resultMessage = "HttpStatus Code: " + response.StatusCode
-                              + "\r\n"
-                              + "Record Successfully Deleted."
-                              + "\r\n"
-                              + "||"
-                              + resultMessage;
-
+                            requestorResponse.Message = "Record Successfully Deleted.";
                             break;
 
                         default:
                             break;
                     }
-                    return resultMessage;
+                    return requestorResponse;
                 }
                 else if (response != null && !(response.IsSuccessStatusCode))
                 {
-                    var resultMessage = "HttpStatus Code: " + response.StatusCode
-                                        + "||" + "#ERROR# "
-                                        + response.Content.ReadAsStringAsync().Result;
-                    return resultMessage;
+                    requestorResponse.Content = response.Content.ReadAsStringAsync().Result;
+                    requestorResponse.StatusCode = response.StatusCode;
+                    requestorResponse.Message = "#ERROR#";
+                    return requestorResponse;
                 }
                 else
                 {
-                    return "#ERROR# " + response.ToString();
+                    requestorResponse.Content = response.Content.ReadAsStringAsync().Result;
+                    requestorResponse.Message = "#ERROR#";
+                    return requestorResponse;
                 }
             }
 

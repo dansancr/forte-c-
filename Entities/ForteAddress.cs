@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Forte
+namespace ForteSdk
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class ForteAddress : ForteResourceClass
@@ -19,8 +19,8 @@ namespace Forte
             set;
         }
 
-        [JsonProperty("account_id")]
-        public string account_id
+        [JsonProperty("organization_id")]
+        public string organization_id
         {
             get;
             set;
@@ -68,12 +68,12 @@ namespace Forte
             set;
         }
 
-        [JsonProperty("fax")]
-        public string fax
-        {
-            get;
-            set;
-        }
+        //[JsonProperty("fax")]
+        //public string fax
+        //{
+        //    get;
+        //    set;
+        //}
 
         [JsonProperty("email")]
         public string email
